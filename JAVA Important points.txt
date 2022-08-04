@@ -1,0 +1,161 @@
+//Getting started Java Basics:
+
+import java.util.*;
+Public class myfirstprogram{
+    Public static void main(string[] args) {
+        //write code here!e.g,
+        System.out.print("text Hello world!\n");  //\n starts from new line
+        System.out.println("text Hello world!");  // println does same work as print and the print \n 
+    }
+}
+>> EX. Think about printing Equilateral triangle using println.
+>> Int x; Int y; //data declaration integer type
+>> Int z = x/y; //x/y gives Quotient, x%y gives Remainder.
+>> (* / %) > and (+ -) // priority of *,/,% are same and +,- are same
+>> *,/,% if all are present the leftmost operator is given more priority
+>> Bracket overrides priority of operators 
+>> double z= Math.pow(double a,double b); //a^b gives a XOR b 
+>> Int z = (int)Math.pow();
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+// conditionals
+
+>> "==" to check the value of a variable but "=" is an assignment operator
+>> If "ONLY ONE STATEMENT" is to be executed after the condition is true,
+   there is no need to create a block for the single line.  The following two yield same results.
+   // Part1
+        if(n%2==0)
+         	 System.out.println("Number is even")
+  
+   // Part2
+        if(n%2==0){
+         	System.out.println("Number is even")
+        }
+>> To combine more than one condition in an if clause we can use 
+   logical operators - AND (&&), OR (||) and Not(!)
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+>> //loops
+
+      4 types: while, for, "do while" and "Post Increment and Pre Increment".
+   1. while loop executed only till the condition holds true. (Beware about infinite loop)
+    Separate statements are required to initialise the variable and increment the variable.
+    In this loop, the conditions are verified before the statements are executed.
+    Structure:
+            int i = 1; // initialise variable
+            while(i <= 10){
+                System.out.println(i);
+                i++; // increment variable i.e, i = i+1;
+            }
+   2. In for loops, initiation, verification and increment are all done in the same statement.
+    in order: 1. Initiation -> 2. Evaluation -> 3. Execution -> 4. Increment ->234..
+    The block of statements are executed only till the condition holds true.
+    Structure:
+            for(int i = 1; i <= 10; i++){   // (initiation; Evaluation; Execution, increment)
+                System.out.println(i);
+            }
+   3. do while loop is seldom used. The block of statements are first executed
+    and then the while condition is checked, just the opposite of while loop.
+    In this loop, the block is executed at-least once as opposed by the other two loops.
+    Structure:
+            int i = 1; //initiation
+            do{
+                System.out.println(i); //Execution
+                i++; //increment
+            }while(i <= 10) //Evaluation
+   4. Post Increment and Pre Increment: statements such as i++, i--, ++i or --i. 
+    i++ : i=i+1; i-- : i=i-1; //post increments/decrements
+    ++i : i=i+1; --i : i=i-1; //Pre increments/decrements
+
+    i++ //First use then increment; increments the value of 'i' by 1 but still uses the original value.
+    ++i //First increase then use; first increments the value of 'i' and then uses the value of the variable.
+
+>> //Patterns
+   
+   Abstraction: Layer by layer problem solving aproach. i.e, I/p dekar O/p par viswaas rakhna.
+   Ye jaanane ki kosish ni krna ki ander kya chal raha hai, isse you will be more foccussed on present layer.
+   
+
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+>> //Introduction to Function:
+
+>>   Public static void f(InputType x1, InputType x2) { 
+     (void type of output is used when function doesn't return any value)
+     f() : it is the function name. i.e, Y = f(x1,x2) Having Input I/P1 and I/P2; Y is the output of function.
+     int f() : it is used when output of f() is of integer type.
+
+     return xyz; returns value of variable xyz of f() and it gets assigned to main's variable
+     and inside main xyz value is received by whichever variable f() is assigned to.
+
+    NOTE: Variables inside function() is of local type not global Variables, Since as soon as return xyz; is executed
+     the variables of f() inside RAM gets erased 
+     }
+>>  Benefits of using function:
+     1. Modularity in code.
+     2. Maintainability of code.
+
+>> //Introduction to Arrays:
+    import java.io.*;
+    import java.util.*;
+    Public class DemoArray(){
+        Public static void main(String[] args) throws Exception{
+            int[] arr; //Declaration of Array named "arr" of type "int".
+            //Above line means: Create a variable for an Array of Integers 
+            arr = new int[3]; //Allocate spaces for 3 Integers in the name of variable arr.
+            arr[0] = 2; // first index of Array gets a value of "2".
+            arr[1] = 3; // arr.length gives size of an Array.
+            arr[2] = 7; // index ranges from 0 to arr.length-1;
+            for(int i = 0; i < arr.length; i++){
+                System.out.println("arr[i]");
+            }
+        }
+    }
+
+     int arr; // Primitive Data Type: stores value and name in stack.
+     int[] arr; // Non Primitive Data Type: stores value in Heap & keeps name and address of Heap in stack.
+     arr = new int[3]; // From Heap 1st integer(4 bytes) address(let 4K) value of Array gets stored in the stack.
+     arr[2] = 7;//Java translate this statement as 4K[3] i.e, Direct location of 3rd Integer which is 3 times of 4 byte
+     Since 4k address is present at Array variable int stack. i.e, 12 bytes away from first address(4K) of Heap
+     (which is stored in arr variable already) Hence 4K[3] it reads as: "Three integer ahed of 4K" 
+     & at that place it will store "7".
+    
+>>  //Implications:
+    1. Performance: arr[0] & arr[1000] as per java these are not different as its direct address is known.
+       Both value will be accessed at same speed.
+      Note: Array ke kisi v index ko access krne ke liye same time lagta hai. Size jo v ho Array ka doesn't matter
+       because as per java you have told direct address.
+    2. Assignment: If you assign any given Array to another array with different name this won't create new spaces
+       in Heap it will use the same address as allocated to earlier array. i.e,
+       int[] one = new int[n]; //new space is allocatedto array named one.
+       int[] two = one; // no new space will be allocated it will just copy same address as "one".
+       Due to this changes in one will reflect in other as well.
+    3. Function
+
+>>  for(int val: arr){ // This statement directly copy values from Array arr[i];
+        System.out.println(val); 
+    }
+
+>>>>NOTE: Agar koi variable/line error de raha hai to just before that line try to print all variabless values,
+          which seems suspecious, to know actually what values we are giving to those variables. this helps in Debugging.
+
+>>  2D Array: //Memory view Important*****
+     int[][] arr; // declaration space in stack remains null.
+     arr = new int[n][m]; //creates 1 array of size n x m; It creates 1 Array of size "n"(index 0 to n-1)
+     Each containing first(starting) address of "m"sized array(index 0 to m-1).
+     int row = arr.length; //gives No. of Rows
+     int col = arr[0].length; // gives No. of Columns
+     for(int i = 0; i < row; i++){
+         for(int j = 0; j < col; j++){
+             arr = scn.nextInt(); //takes input for respective index locations.
+             System.out.println(arr[i][j]);
+         }
+     }
+
+>>> NOTE: Always Remember:
+         1. Condition kya lena hai?
+         2. Loop se bahar kab nikalna hai?
+         3. Direction(in 2D Array) kaise change karna hai?
+
+        ***Way to rotate any no of elements by r times: S-1. Reverse(P1); S-2. Reverse(P2); S-3. Reverse(P1 + P2);
+
