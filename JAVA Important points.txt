@@ -159,3 +159,35 @@ Public class myfirstprogram{
 
         ***Way to rotate any no of elements by r times: S-1. Reverse(P1); S-2. Reverse(P2); S-3. Reverse(P1 + P2);
 
+>> //Introduction to Recursion:
+    ##Tail call Recursion: it takes less time on modern compilers then simple recursion.
+    those recursive call, is called Tail call Recursion, after which there are no any action to perform.
+    i.e, last action in recursion function is recursive call.
+    ex.. recursive program to print n to 1. after sysout(n), fun(n-1) is called. Hence program to print n to 1 takes
+    lesser time than program to print 1 to n.
+    void fun(int n) { //Tail call Recursive function: print n to 1;
+        start: //label added by modern compilers internally in case of tail recursive function.
+        if(n == 0) {
+            return;
+        }
+        sysout(n);
+        fun(n - 1); //changes => n - 1 = n & goto start;
+        // such changes by compilers are called Tail call elimination.
+    }
+    int k = 1;
+    viod fun(int n, int k) {//print 1 to n; Tail call recursion version.
+        if(n == 0) return;
+        sysout(k);     //fun(n - 1);
+        fun(n-1, k+1); //sysout(n); Non-tail call recursive version.
+    }
+    ##NOTE: not every non-tail call recursive can be converted to Tail call recursion version e.g, Merge sort
+    and post order tree traversal. Overall its good to have Tail recursive function.
+    int fact(int n) {//not Tail recursive function to calculate factorial.
+        if(n == 0 || n == 1) return 1;
+        return n * fact(n - 1);
+    }
+    int k = 1; //Tail recursive version function to calculate factorial.
+    int fact(int n, int k) {
+        if(n == 0 || n == 1) return k;
+        return fact(n - 1, n*k);
+    }
